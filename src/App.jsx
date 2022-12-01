@@ -5,6 +5,8 @@ import { NewNote } from "./NewNote";
 import { Layout } from "./Layout";
 import { NewNoteObj } from "./Helper";
 import {Notes} from "./Notes";
+import { Note } from "./Note";
+import { NoteEdit } from "./NoteEdit";
 
 
 function App() {
@@ -37,12 +39,11 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout/>}>
-          <Route index element={<h1>Home</h1>} />
+          <Route index element={<Notes notes={notes}/>} />
           <Route path="/new" element={<NewNote onSubmit={handleSubmit}/>} />
           <Route path="/note">
-            <Route index element={<Notes notes={notes}/>}/>
-            <Route path=":id" element={<h1>book id</h1>}/>
-            <Route path="edit" element={<h1>book edit</h1>}/>
+            <Route path=":id" element={<Note notes={notes}/>}/>
+            <Route path="edit" element={<NoteEdit/>}/>
           </Route>
           <Route path="*" element={<h1>not found</h1>}/>
         </Route>
