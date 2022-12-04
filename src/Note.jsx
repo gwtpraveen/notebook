@@ -1,9 +1,13 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export const Note = ({notes}) => {
+export const Note = ({notes, onDelete}) => {
     const data = useParams();
-    const note = notes.filter(item => item.id == data.id)[0]
+    const note = notes.filter(item => item.id == data.id)[0];
+
+    const handleDelete = () => {
+        onDelete(data.id);
+    }
 
     return (
         <div>
@@ -12,7 +16,9 @@ export const Note = ({notes}) => {
            <Link to={`../edit?id=${data.id}`}>
             <button>Edit</button>
            </Link>
-           <button>Delete</button>
+           <Link to="/">
+            <button onClick={handleDelete}>Delete</button>
+           </Link>
         </div>
     )
 }

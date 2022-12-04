@@ -1,0 +1,40 @@
+form {
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .btnDiv {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+
+        .btn {
+            padding: .5em 2em;
+            cursor: pointer;
+        }
+    }
+
+    .formGroup {
+        margin-top: 1rem;
+
+
+        label {
+            display: block;
+            margin-bottom: .5rem;
+        }
+        input {
+            padding: .5rem 1rem;
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+            padding: .5rem 1rem;
+        }
+    }
+}

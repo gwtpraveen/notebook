@@ -1,26 +1,9 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
-export const MultiSelectTags = () => {
-    const [tags, setTags] = useState([]);
+export const MultiSelectTags = ({tags, setTags}) => {
     const tagInputRef = useRef();
 
-    // const handleKeyDown = (e) => {
-    //     if (e.key === "Enter") {
-    //         const value = tagInputRef.current.value;
-    //         setTags(preVal => {
-    //             if (!tags.includes(value)) {
-    //                 return [...preVal, value];
-    //             } else {
-    //                 return preVal;
-    //             }
-    //         });
-    //         tagInputRef.current.value = null;
-    //         console.log("updated the tags")
-    //     }
-    // };
-
     const handleTags = () => {
-        console.log("i am running")
         const tags = tagInputRef.current.value;
         if (tags) {
             const tagsList = tags.split("|");
@@ -30,7 +13,6 @@ export const MultiSelectTags = () => {
     };
 
     const handleRemoveTag = (tag) => {
-        console.log("i am handleremove tag function");
         setTags(preVal => {
             const newTags = preVal.filter(item => item !== tag);
             return newTags;
@@ -42,7 +24,6 @@ export const MultiSelectTags = () => {
         setTags([]);
     };
 
-    console.log(tags)
     return (
         <div className="multiSelectTagContainer">
             <label htmlFor="tag">Tag</label>
@@ -53,8 +34,11 @@ export const MultiSelectTags = () => {
                         <button onClick={() => handleRemoveTag(item)}>X</button>
                     </div>
                 )}
-                <input type="text" id="tag" ref={tagInputRef} onBlur={handleTags} onFocus={handleFocus}/>
+                <input type="text" id="tag" ref={tagInputRef} onBlur={handleTags} onFocus={handleFocus} placeholder="seperated by '|' eg:- tag1|tag2"/>
             </div>
         </div>
     )
 }
+
+// TODO: fix if user input empty tag via html||css
+// TODO: trim white spaces in tags

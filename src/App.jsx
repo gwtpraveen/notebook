@@ -45,6 +45,13 @@ function App() {
     })
   }
 
+  const handleDelete = (id) => {
+    setNotes(preVal => {
+      const notes = preVal.filter(item => item.id != id);
+      return notes;
+    })
+  }
+
 
   return (
     <div className="App">
@@ -53,7 +60,7 @@ function App() {
           <Route index element={<Notes notes={notes}/>} />
           <Route path="/new" element={<NewNote onSubmit={handleSubmit}/>} />
           <Route path="/note">
-            <Route path=":id" element={<Note notes={notes}/>}/>
+            <Route path=":id" element={<Note notes={notes} onDelete={handleDelete}/>}/>
             <Route path="edit" element={<NoteEdit notes={notes} onSubmit={updateNote}/>}/>
           </Route>
           <Route path="*" element={<h1>not found</h1>}/>
